@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;900&family=Shadows+Into+Light+Two&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;  line-height: 1.5;
+  font-size: 1.6rem;
+  background-color: #eee7d0;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  margin: 0 auto;
+}
+
+a {
+  color: green;
+}
+
+a:hover {
+  color: rgb(0, 43, 0);
+}
