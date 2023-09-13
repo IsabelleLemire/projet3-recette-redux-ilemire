@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { fetchRecipeById } from '../../services/api';
 
 import CustomButton from '../Buttons/CustomButton';
+import ButtonFavorite from '../Buttons/ButtonFavorite';
 import CustomLink from '../Links/CustomLink';
 import Title from '../TitleText/Title';
 
@@ -46,15 +47,18 @@ const RecipePage = () => {
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <div className="text-center">
-            <CustomLink to="/">Retour à la page d'accueil</CustomLink>
+      <Row className='spaceMargin'>
+        <Col className="text-center">
+            <CustomLink to="/">Retour à la page d'accueil</CustomLink> / <Link to="/favorites">Voir les favoris</Link>
             <Title as="h1">{recipe.strMeal}</Title>
-            <Title as="h2">Category: {recipe.strCategory}</Title>
-          </div>
+            <Row>
+              <Col>
+                <Title as="h2">Category: {recipe.strCategory}</Title>
+                <ButtonFavorite recipe={recipe} />
+              </Col>
+            </Row>
         </Col>
-      </Row>  
+      </Row>
 
       <Row>
         <Col>
@@ -63,7 +67,6 @@ const RecipePage = () => {
         <Col>
           <CustomButton onClick={toggleIngredients}>Ingredients</CustomButton>
           <CustomButton onClick={toggleInstructions}>Instructions</CustomButton>
-
             {ingredientsVisible && (
               <div>
                 <Title as="h3">Ingredients</Title>
@@ -84,7 +87,7 @@ const RecipePage = () => {
               </div>
             )}
         </Col>
-      </Row>   
+      </Row>  
     </Container>
   );
 }

@@ -26,3 +26,6 @@ a {
 a:hover {
   color: rgb(0, 43, 0);
 }
+.spaceMargin {
+  margin-bottom: 50px;
+}

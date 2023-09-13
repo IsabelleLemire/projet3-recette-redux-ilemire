@@ -40,6 +40,9 @@ const Home = () => {
           </ListGroup>
         </Col>
       </Row>
+      <Row className="text-center">
+        <Link to="/favorites">Voir les favoris</Link>
+      </Row>
     </Container>
   );
 }
