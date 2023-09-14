@@ -7,7 +7,6 @@ const ButtonFavorite = ({ recipe }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(state => state.favorites);
 
-  // Vérifie si la recette est déjà dans les favoris
   const isFavorite = favorites.some(favRecipe => favRecipe.idMeal === recipe.idMeal);
 
   const handleToggleFavorite = () => {
