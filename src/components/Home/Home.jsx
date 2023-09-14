@@ -41,7 +41,7 @@ const Home = () => {
         </Col>
       </Row>
       <Row className="text-center">
-        <Link to="/favorites">Voir les favoris</Link>
+        <Link to="/favorites">View favorites</Link>
       </Row>
     </Container>
   );

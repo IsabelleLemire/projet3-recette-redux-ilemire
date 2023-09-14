@@ -1,17 +1,17 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import './Button.css';
 
 const BackButton = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleGoBack = () => {
-    history.goBack();
+    navigate(-1);
   };
 
   return (
-    <button onClick={handleGoBack}>Retour</button>
+    <button onClick={handleGoBack}>Back</button>
   );
 };
 

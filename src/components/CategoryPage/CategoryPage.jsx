@@ -30,7 +30,7 @@ const CategoryPage = () => {
       <Row>
         <Col>
           <div className="text-center">
-            <CustomLink to="/">Retour à la page des catégories</CustomLink>
+            <CustomLink to="/">Home</CustomLink> / <Link to="/favorites">View favorites</Link>
           </div>
           <Title as="h1">{`Recipes in ${category}`}</Title>
           <ListGroup>

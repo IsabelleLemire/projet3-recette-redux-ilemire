@@ -1,25 +1,24 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addToFavorites, removeFromFavorites } from '../../store/favoritesSlice';
 import './Button.css';
 
-const ButtonFavorite = ({ recipe }) => {
+const ButtonFavorite = ({ recipe, isFavorite }) => {
   const dispatch = useDispatch();
-  const favorites = useSelector(state => state.favorites);
-
-  const isFavorite = favorites.some(favRecipe => favRecipe.id === recipe.id);
 
   const handleToggleFavorite = () => {
-    if (isFavorite) {
-      dispatch(removeFromFavorites(recipe.id));
-    } else {
-      dispatch(addToFavorites(recipe));
+    if (recipe && recipe.idMeal) {
+      if (isFavorite) {
+        dispatch(removeFromFavorites(recipe.idMeal));
+      } else {
+        dispatch(addToFavorites(recipe));
+      }
     }
   };
-
+  
   return (
     <button className='btn-favorite' onClick={handleToggleFavorite}>
-      {isFavorite ? 'Enlever des favoris' : 'Ajouter aux favoris'}
+      {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     </button>
   );
 };
