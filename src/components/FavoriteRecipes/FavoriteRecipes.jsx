@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromFavorites } from '../../store/favoritesSlice';
+import BackButton from '../Buttons/BackButton';
+
+
 
 const FavoriteRecipes = () => {
   const favorites = useSelector(state => state.favorites);
@@ -21,6 +24,7 @@ const FavoriteRecipes = () => {
           </button>
         </div>
       ))}
+      <BackButton />
     </div>
   );
 };
