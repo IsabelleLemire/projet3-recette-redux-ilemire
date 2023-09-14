@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromFavorites } from '../../store/favoritesSlice';
+import { selectFavorites } from '../../store/selectors';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -15,7 +15,7 @@ import CustomLink from '../Links/CustomLink';
 
 
 const FavoriteRecipes = () => {
-  const favorites = useSelector(state => state.favorites);
+  const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
 
   const handleRemoveFromFavorites = recipeId => {
@@ -30,20 +30,23 @@ const FavoriteRecipes = () => {
           <div className="text-center">
             <CustomLink to="/">Home</CustomLink>
           </div>
-          <Title as="h1">Recettes en favoris</Title>
-          <ListGroup>
-            {favorites.map(recipe => (
-            <div key={recipe.idMeal}>
-              <h2>{recipe.strMeal}</h2>
-              <button onClick={() => handleRemoveFromFavorites(recipe.idMeal)}>
-                Enlever des favoris
-              </button>
-            </div>
-            ))}
-          </ListGroup>
-          <BackButton />
+          <Title as="h1">Favorite recipes</Title>
+            <ListGroup>
+              {favorites.map(recipe => (
+                <ListGroup.Item key={recipe.idMeal}>
+                  <img src={recipe.strMealThumb} alt={recipe.strMeal} className="imgThumbnail" />
+                  <h2>{recipe.strMeal}</h2>
+                  <button className='btn-favorite' onClick={() => handleRemoveFromFavorites(recipe.idMeal)}>Remove favorites</button>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
         </Col>
       </Row>
+      <Row>
+        <Col className="text-center">
+          <BackButton />
+        </Col>
+      </Row> 
     </Container>
   );
 };

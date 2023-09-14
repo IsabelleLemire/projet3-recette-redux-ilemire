@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { fetchRecipeById } from '../../services/api';
-import { useDispatch } from 'react-redux';
-
 
 import CustomButton from '../Buttons/CustomButton';
 import ButtonFavorite from '../Buttons/ButtonFavorite';
@@ -18,8 +16,8 @@ import Col from 'react-bootstrap/Col';
 const RecipePage = () => {
   const { recipeId } = useParams();
   const { data: recipe, isLoading, isError } = useQuery(['recipe', recipeId], () => fetchRecipeById(recipeId));
+
   const [isFavorite, setIsFavorite] = useState(false);
-  const dispatch = useDispatch();
 
   const [ingredientsVisible, setIngredientsVisible] = useState(false);
   const [instructionsVisible, setInstructionsVisible] = useState(false);
@@ -30,20 +28,6 @@ const RecipePage = () => {
       setIsFavorite(storedFavorites.some(favRecipe => favRecipe.id === recipe.idMeal));
     }
   }, [recipe]);
-
-  const handleToggleFavorite = () => {
-    if (recipe && recipe.idMeal) {
-      if (isFavorite) {
-        dispatch(removeFromFavorites(recipe.idMeal));
-      } else {
-        dispatch(addToFavorites(recipe));
-      }
-      setIsFavorite(!isFavorite);
-    } else {
-      console.log("Recipe or recipe.idMeal is undefined.");
-    }
-  };
-
 
   const toggleIngredients = () => {
     setIngredientsVisible(!ingredientsVisible);
