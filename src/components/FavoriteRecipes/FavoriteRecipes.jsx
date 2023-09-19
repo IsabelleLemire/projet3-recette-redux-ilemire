@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromFavorites } from '../../store/favoritesSlice';
 import { selectFavorites } from '../../store/selectors';
+import { Link } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,7 +13,6 @@ import BackButton from '../Buttons/BackButton';
 import Title from '../TitleText/Title';
 import CustomLink from '../Links/CustomLink';
 
-
 const FavoriteRecipes = () => {
   const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
@@ -23,7 +22,6 @@ const FavoriteRecipes = () => {
   };
 
   return (
-
     <Container>
       <Row>
         <Col>
@@ -34,8 +32,10 @@ const FavoriteRecipes = () => {
             <ListGroup>
               {favorites.map(recipe => (
                 <ListGroup.Item key={recipe.idMeal}>
-                  <img src={recipe.strMealThumb} alt={recipe.strMeal} className="imgThumbnail" />
-                  <h2>{recipe.strMeal}</h2>
+                  <Link to={`/recipe/${recipe.idMeal}`}>
+                    <img src={recipe.strMealThumb} alt={recipe.strMeal} className="imgThumbnail" />
+                    <h2>{recipe.strMeal}</h2>
+                  </Link>
                   <button className='btn-favorite' onClick={() => handleRemoveFromFavorites(recipe.idMeal)}>Remove favorites</button>
                 </ListGroup.Item>
               ))}
